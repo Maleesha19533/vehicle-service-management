@@ -1,0 +1,13 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CustomerController;
+
+Route::get('/test', function () {
+    return response()->json([
+        'status' => true,
+        'message' => 'Vehicle Service Management API is Working!',
+    ]);
+});
+
+Route::apiResource('customers', CustomerController::class);
