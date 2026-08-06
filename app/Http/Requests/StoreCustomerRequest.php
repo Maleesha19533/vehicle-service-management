@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCustomerRequest extends FormRequest
+class StoreCustomerRequest extends FormRequest // මෙතන Class name එක StoreCustomerRequest විය යුතුය
 {
     public function authorize(): bool
     {
@@ -14,12 +14,11 @@ class StoreCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_code' => 'required|string|max:20|unique:customers,customer_code',
-            'full_name' => 'required|string|max:255',
-            'nic' => 'required|string|max:20|unique:customers,nic',
-            'phone' => 'required|string|max:15',
-            'email' => 'nullable|email|max:255',
+            'name'    => 'required|string|max:255',
+            'email'   => 'required|email|unique:customers,email',
+            'phone'   => 'required|string|max:20',
             'address' => 'nullable|string',
+            'notes'   => 'nullable|string',
         ];
     }
 }

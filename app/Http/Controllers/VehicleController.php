@@ -25,11 +25,16 @@ class VehicleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreVehicleRequest $request)
     {
-        //
-    }
+        $vehicle = Vehicle::create($request->validated());
 
+        return response()->json([
+            'success' => true,
+            'message' => 'Vehicle added successfully.',
+            'data'    => $vehicle
+        ], 201);
+    }
     /**
      * Display the specified resource.
      */

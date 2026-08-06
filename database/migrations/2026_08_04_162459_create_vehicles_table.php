@@ -10,20 +10,13 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('customer_id')
-                  ->constrained()
-                  ->cascadeOnDelete();
-
-            $table->string('registration_no')->unique();
-            $table->string('brand');
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->string('reg_no')->unique();
+            $table->string('make');
             $table->string('model');
-            $table->year('year');
-            $table->string('color')->nullable();
-            $table->string('engine_no')->unique();
-            $table->string('chassis_no')->unique();
-            $table->integer('mileage')->default(0);
-
+            $table->integer('year');
+            $table->string('vin')->nullable()->unique();
+            $table->integer('mileage');
             $table->timestamps();
         });
     }

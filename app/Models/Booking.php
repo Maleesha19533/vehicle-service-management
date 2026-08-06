@@ -3,21 +3,32 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Customer extends Model
+class Booking extends Model
 {
     protected $fillable = [
-        'customer_code',
-        'full_name',
-        'nic',
-        'phone',
-        'email',
-        'address',
+        'customer_id',
+        'vehicle_id',
+        'service_id',
+        'booking_date',
+        'booking_time',
+        'status',
+        'notes',
     ];
 
-    public function vehicles(): HasMany
+    public function customer(): BelongsTo
     {
-        return $this->hasMany(Vehicle::class);
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function vehicle(): BelongsTo
+    {
+        return $this->belongsTo(Vehicle::class);
+    }
+
+    public function service(): BelongsTo
+    {
+        return $this->belongsTo(Service::class);
     }
 }

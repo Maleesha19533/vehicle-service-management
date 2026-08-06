@@ -41,9 +41,9 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+   public function show(string $id)
 {
-    $customer = Customer::find($id);
+    $customer = Customer::with('vehicles')->find($id);
 
     if (!$customer) {
         return response()->json([
@@ -55,7 +55,7 @@ class CustomerController extends Controller
     return response()->json([
         'success' => true,
         'message' => 'Customer retrieved successfully.',
-        'data' => $customer,
+        'data'    => $customer
     ], 200);
 }
     /**
@@ -102,4 +102,5 @@ class CustomerController extends Controller
         'message' => 'Customer deleted successfully.'
     ], 200);
 }
+
 }
